@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 846d4fba5c844d8295db50f68e07f87b, type: 3}
+  m_Name: UIConfiguration
+  m_EditorClassIdentifier: 
+  _viewPrefabs:
+  - _viewPrefab: {fileID: 5619387297509918464, guid: 90b7c534120a1394f8a7de9ec6ff4204,
+      type: 3}
+    _presenterType:
+      assemblyQualifiedName: Presenters.MainMenuPresenter, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - _viewPrefab: {fileID: 8148006732966662813, guid: 3c6834a509615be4f8bc0fd3909e7e13,
+      type: 3}
+    _presenterType:
+      assemblyQualifiedName: Presenters.GameplayPresenter, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - _viewPrefab: {fileID: 1990243443565070269, guid: 165b59397bca1e34f8537fd6c13070c2,
+      type: 3}
+    _presenterType:
+      assemblyQualifiedName: Presenters.EndGamePresenter, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
