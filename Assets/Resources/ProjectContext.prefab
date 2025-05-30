@@ -32,6 +32,7 @@ Transform:
   m_Children:
   - {fileID: 5883401080473287582}
   - {fileID: 4586243199827924082}
+  - {fileID: 6494870567179346977}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3518266732573832835
@@ -50,6 +51,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 2475601398320174259}
   - {fileID: 7231174025420812922}
+  - {fileID: 5576643998511633729}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0
@@ -114,6 +116,50 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 130c7bda4a0a11b458fa096f2b1fe203, type: 2}
   - {fileID: 11400000, guid: 69cc2fea7707dd14a97f98e20fa56077, type: 2}
   - {fileID: 11400000, guid: 243667d04fc69624b9eb45a7424aaf60, type: 2}
+--- !u!1 &5723208595272689666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6494870567179346977}
+  - component: {fileID: 5576643998511633729}
+  m_Layer: 0
+  m_Name: AdsManagerInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6494870567179346977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5723208595272689666}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4767557844847443284}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5576643998511633729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5723208595272689666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f2307b3a9a243389417df3f9f02376e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7848273723517088536
 GameObject:
   m_ObjectHideFlags: 0
