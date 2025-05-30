@@ -94,11 +94,10 @@ namespace RoadSystem
 
         private void ClearRoad()
         {
-            foreach (var chunk in _roadChunks)
+            while (_roadChunks.Count > 0)
             {
-                _chunkPool.Release(chunk);
+                DespawnChunk();
             }
-            _roadChunks.Clear();
         }
         
         private RoadChunk SpawnChunk()
@@ -121,7 +120,6 @@ namespace RoadSystem
             _chunkCounter++;
 
             OnChunkSpawned?.Invoke(newChunk);
-            Debug.Log($"Spawned chunk: {newChunk.Index}");
             return newChunk;
         }
 

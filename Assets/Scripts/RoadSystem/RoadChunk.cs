@@ -10,7 +10,6 @@ namespace RoadSystem
     {
         [SerializeField] private BoxCollider _floorCollider;
         [SerializeField] private RoadObstacle[] _obstacles;
-        public int Index;
         public float HalfLength => _floorCollider.size.z / 2;
         
         public void SetObstaclesActivity(bool value)
@@ -38,7 +37,6 @@ namespace RoadSystem
                 var randomChunkIndex = Random.Range(0, _configuration.RoadChunkPrefabs.Length);
                 var chunkPrefab = _configuration.RoadChunkPrefabs[randomChunkIndex];
                 var chunk = _container.InstantiatePrefabForComponent<RoadChunk>(chunkPrefab, parent);
-                chunk.Index = randomChunkIndex;
                 return chunk;
             }
         }
