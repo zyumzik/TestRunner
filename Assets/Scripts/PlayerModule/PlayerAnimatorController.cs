@@ -39,6 +39,8 @@ namespace PlayerModule
         [SerializeField] private AnimationData _death;
 
         private RoadMovementController _roadMovementController;
+        private float _currentAnimatorSpeed;
+        private bool _isRunning;
 
         public void Initialize(RoadMovementController roadMovementController)
         {
@@ -47,11 +49,26 @@ namespace PlayerModule
 
         private void Update()
         {
-            _animator.speed = Mathf.Lerp(_minAnimatorSpeed, _maxAnimatorSpeed,
+            if (!_isRunning) return;
+            
+            _currentAnimatorSpeed = Mathf.Lerp(_minAnimatorSpeed, _maxAnimatorSpeed,
                 _roadMovementController.CurrentSpeedRatio);
+            _animator.speed = _currentAnimatorSpeed;
             //Debug.Log($"Animation Speed: {_animator.speed}");
         }
 
+        public void StopAnimator()
+        {
+            _isRunning = false;
+            _animator.speed = 0;
+        }
+
+        public void StartAnimator()
+        {
+            _isRunning = true;
+            _animator.speed = _currentAnimatorSpeed;
+        }
+        
         public void PlayIdle() => CrossFade(_idle);
         public void PlayRun() => CrossFade(_run);
         public void PlayJump() => CrossFade(_jump);

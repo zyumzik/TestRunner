@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "37766765923",
+    "project_id": "testrunner-bbee2",
+    "storage_bucket": "testrunner-bbee2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:37766765923:android:46a5a4144ae854fd670756",
+        "android_client_info": {
+          "package_name": "com.UnityTechnologies.com.unity.template.urpblank"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhiv9XuzZSjq4kEL-uVXqaQEUsI10nYb0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

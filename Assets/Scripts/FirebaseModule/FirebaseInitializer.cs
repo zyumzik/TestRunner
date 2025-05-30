@@ -3,7 +3,7 @@ using Firebase.Extensions;
 
 namespace FirebaseModule
 {
-    public class FirebaseManager : IInitializable
+    public class FirebaseInitializer : IInitializable
     {
         private Firebase.FirebaseApp _app;
         

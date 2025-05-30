@@ -1,4 +1,5 @@
 using System;
+using FirebaseModule;
 using PlayerModule;
 using UI;
 using UI.Views;
@@ -9,6 +10,7 @@ namespace GameStateManagerModule
     public class GameStateManager : IInitializable
     {
         private readonly UIManager _uiManager;
+        private readonly AuthManager _authManager;
         private readonly Player _player;
 
         public event Action OnGamePrepared;
@@ -18,14 +20,16 @@ namespace GameStateManagerModule
         public event Action OnGameEnd;
         public event Action OnGameRestarted; 
         
-        public GameStateManager(UIManager uiManager)
+        public GameStateManager(UIManager uiManager, AuthManager authManager)
         {
             _uiManager = uiManager;
+            _authManager = authManager;
         }
 
         public void Initialize()
         {
-            PrepareGame();
+            _uiManager.Show<AuthView>();
+            _authManager.SilentLogin();
         }
 
         public void PrepareGame()

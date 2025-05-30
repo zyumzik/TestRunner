@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: UIConfiguration
   m_EditorClassIdentifier: 
   _viewPrefabs:
+  - _viewPrefab: {fileID: 7409479709682572387, guid: c93138957e47e3e4eb8f213413a8973d,
+      type: 3}
+    _presenterType:
+      assemblyQualifiedName: Presenters.AuthPresenter, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
   - _viewPrefab: {fileID: 5619387297509918464, guid: 90b7c534120a1394f8a7de9ec6ff4204,
       type: 3}
     _presenterType:
@@ -27,4 +32,9 @@ MonoBehaviour:
       type: 3}
     _presenterType:
       assemblyQualifiedName: Presenters.EndGamePresenter, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  - _viewPrefab: {fileID: 2951396231478126351, guid: 9383cbc7be5ef9040b54194416e10a61,
+      type: 3}
+    _presenterType:
+      assemblyQualifiedName: Presenters.FailedAdPresenter, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null

@@ -63,6 +63,8 @@ namespace PlayerModule
             _obstacleDetector.OnObstacleEnter += ObstacleEntered;
             _gameStateManager.OnGamePrepared += OnGamePrepared;
             _gameStateManager.OnGameStart += OnGameStart;
+            _gameStateManager.OnGamePaused += OnGamePaused;
+            _gameStateManager.OnGameResumed += OnGameResumed;
             _gameStateManager.OnGameEnd += OnGameEnd;
             _gameStateManager.OnGameRestarted += OnGameRestarted;
         }
@@ -72,6 +74,8 @@ namespace PlayerModule
             _obstacleDetector.OnObstacleEnter -= ObstacleEntered;
             _gameStateManager.OnGamePrepared -= OnGamePrepared;
             _gameStateManager.OnGameStart -= OnGameStart;
+            _gameStateManager.OnGamePaused -= OnGamePaused;
+            _gameStateManager.OnGameResumed -= OnGameResumed;
             _gameStateManager.OnGameEnd -= OnGameEnd;
             _gameStateManager.OnGameRestarted -= OnGameRestarted;
         }
@@ -136,6 +140,16 @@ namespace PlayerModule
             _runTrigger.Activate();
         }
 
+        private void OnGamePaused()
+        {
+            _animatorController.StopAnimator();
+        }
+
+        private void OnGameResumed()
+        {
+            _animatorController.StartAnimator();
+        }
+        
         private void OnGameEnd()
         {
             _movementController.enabled = false;
