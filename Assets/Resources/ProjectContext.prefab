@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a744b8ebd881440f93f95f48df8c6286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _databaseUri: https://testrunner-bbee2-default-rtdb.europe-west1.firebasedatabase.app/
+  _leaderboardPathString: Leaderboard
 --- !u!1 &5723208595272689666
 GameObject:
   m_ObjectHideFlags: 0

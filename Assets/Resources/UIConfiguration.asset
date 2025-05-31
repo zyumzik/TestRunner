@@ -38,3 +38,8 @@ MonoBehaviour:
     _presenterType:
       assemblyQualifiedName: Presenters.FailedAdPresenter, Assembly-CSharp, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
+  - _viewPrefab: {fileID: 3256722280168570843, guid: 85270584d32e2a84c8b548c96e42bb5e,
+      type: 3}
+    _presenterType:
+      assemblyQualifiedName: Presenters.LeaderboardPresenter, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null

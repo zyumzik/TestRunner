@@ -11,6 +11,7 @@ namespace FirebaseModule
     { 
         public bool IsUserLoggedIn => _auth.CurrentUser != null;
         public string UserId => _auth.CurrentUser?.UserId;
+        public string UserDisplayName => _auth.CurrentUser?.DisplayName;
         
         private FirebaseAuth _auth;
         private FirebaseUser _user;
@@ -43,26 +44,32 @@ namespace FirebaseModule
             }
         }
 
-        public Task Register(string email, string password)
+        public Task Register(string username, string email, string password)
         {
             return _auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
             {
-                if (task.IsCanceled)
+                if (task.IsCanceled || task.IsFaulted)
                 {
                     OnRegisterFailed?.Invoke();
-                    Debug.LogError("Register was canceled.");
-                    return;
-                }
-                if (task.IsFaulted)
-                {
-                    OnRegisterFailed?.Invoke();
-                    Debug.LogError("Register encountered an error: " + task.Exception);
+                    Debug.LogError("Registration failed");
                     return;
                 }
 
                 FirebaseUser newUser = task.Result.User;
-                OnRegisterSuccess?.Invoke();
-                Debug.LogFormat("User registered successfully: {0} ({1})", newUser.DisplayName, newUser.UserId);
+
+                var profile = new UserProfile { DisplayName = username };
+                newUser.UpdateUserProfileAsync(profile).ContinueWithOnMainThread(profileTask =>
+                {
+                    if (profileTask.IsCanceled || profileTask.IsFaulted)
+                    {
+                        Debug.LogError("Registration failed");
+                        OnRegisterFailed?.Invoke();
+                        return;
+                    }
+                    
+                    Debug.LogFormat("User registered successfully: {0} ({1})", newUser.DisplayName, newUser.UserId);
+                    OnRegisterSuccess?.Invoke();
+                });
             });
         }
 
@@ -70,16 +77,10 @@ namespace FirebaseModule
         {
             return _auth.SignInWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task =>
             {
-                if (task.IsCanceled)
+                if (task.IsCanceled || task.IsFaulted)
                 {
                     OnLoginFailed?.Invoke();
-                    Debug.LogError("Login was canceled.");
-                    return;
-                }
-                if (task.IsFaulted)
-                {
-                    OnLoginFailed?.Invoke();
-                    Debug.LogError("Login encountered an error: " + task.Exception);
+                    Debug.LogError("Logging in failed");
                     return;
                 }
 

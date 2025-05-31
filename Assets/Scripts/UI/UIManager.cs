@@ -42,10 +42,14 @@ namespace UI
         public void Show<T>(bool hideCurrentView = true) where T : UIView
         {
             var view = GetUIView<T>();
+            
             if (hideCurrentView)
+            {
                 _currentView?.Hide();
-            _currentView = view;
-            _currentView.Show();
+                _currentView = view;
+            }
+
+            view.Show();
         }
         
         public void Hide<T>() where T : UIView

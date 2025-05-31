@@ -1,4 +1,3 @@
-using System;
 using Cinemachine;
 using DG.Tweening;
 using GameStateManagerModule;

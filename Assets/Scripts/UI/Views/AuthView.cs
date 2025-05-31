@@ -21,6 +21,7 @@ namespace UI.Views
         [SerializeField] private Button _loginPanelBackButton;
         
         [SerializeField] private GameObject _registerPanel;
+        [SerializeField] private TMP_InputField _registerUsernameInputField;
         [SerializeField] private TMP_InputField _registerEmailInputField;
         [SerializeField] private TMP_InputField _registerPasswordInputField;
         [SerializeField] private TMP_InputField _registerPasswordConfirmInputField;
@@ -28,7 +29,7 @@ namespace UI.Views
         [SerializeField] private Button _registerPanelBackButton;
 
         public event Action<string, string> OnLogin;
-        public event Action<string, string> OnRegister;
+        public event Action<string, string, string> OnRegister;
 
         private void OnEnable()
         {
@@ -56,6 +57,7 @@ namespace UI.Views
         public void SetWaitingPanelActivity(bool value)
         {
             _waitingPanel.SetActive(value);
+            //Debug.Log($"SetWaitingPanelActivity: {value}");
         }
 
         public void ShowErrorPanel()
@@ -87,7 +89,8 @@ namespace UI.Views
         {
             if (String.CompareOrdinal(_registerPasswordInputField.text, _registerPasswordConfirmInputField.text) == 0)
             {
-                OnRegister?.Invoke(_registerEmailInputField.text, _registerPasswordInputField.text);
+                OnRegister?.Invoke(_registerUsernameInputField.text, _registerEmailInputField.text,
+                    _registerPasswordInputField.text);
             }
             else
             {

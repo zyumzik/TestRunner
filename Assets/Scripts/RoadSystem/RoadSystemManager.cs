@@ -1,3 +1,4 @@
+using FirebaseModule;
 using GameStateManagerModule;
 
 namespace RoadSystem
@@ -8,14 +9,17 @@ namespace RoadSystem
         private readonly RoadChunkManager _roadChunkManager;
         private readonly RoadMovementController _roadMovementController;
         private readonly RoadScoreCounter _roadScoreCounter;
+        private readonly LeaderboardManager _leaderboardManager;
 
-        public RoadSystemManager(GameStateManager gameStateManager, RoadChunkManager roadChunkManager, 
-            RoadMovementController roadMovementController, RoadScoreCounter roadScoreCounter)
+        public RoadSystemManager(GameStateManager gameStateManager, RoadChunkManager roadChunkManager,
+            RoadMovementController roadMovementController, RoadScoreCounter roadScoreCounter,
+            LeaderboardManager leaderboardManager)
         {
             _gameStateManager = gameStateManager;
             _roadChunkManager = roadChunkManager;
             _roadMovementController = roadMovementController;
             _roadScoreCounter = roadScoreCounter;
+            _leaderboardManager = leaderboardManager;
 
             _gameStateManager.OnGamePrepared += OnGamePrepared;
             _gameStateManager.OnGameStart += OnGameStart;
@@ -54,6 +58,8 @@ namespace RoadSystem
         {
             _roadMovementController.StopMoving();
             _roadScoreCounter.Stop();
+
+            TryUpdateScore();
         }
 
         private void OnGameRestarted()
@@ -61,6 +67,20 @@ namespace RoadSystem
             _roadChunkManager.DeactivateObstaclesOnRevive();
             _roadMovementController.StartMoving();
             _roadScoreCounter.Start();
+        }
+
+        private async void TryUpdateScore()
+        {
+            var userData = await _leaderboardManager.GetUserScore();
+
+            if (userData == null)
+            {
+                await _leaderboardManager.SubmitScore(_roadScoreCounter.TimeScore);
+            }
+            else if (_roadScoreCounter.TimeScore > userData.Score)
+            {
+                await _leaderboardManager.SubmitScore(_roadScoreCounter.TimeScore);
+            }
         }
     }
 }

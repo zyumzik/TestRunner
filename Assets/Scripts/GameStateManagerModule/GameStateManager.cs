@@ -40,6 +40,7 @@ namespace GameStateManagerModule
         
         public void StartGame()
         {
+            _uiManager.HideAll();
             _uiManager.Show<GameplayView>();
             
             OnGameStart?.Invoke();

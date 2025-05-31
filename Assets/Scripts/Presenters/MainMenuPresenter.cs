@@ -7,14 +7,18 @@ namespace Presenters
 {
     public class MainMenuPresenter : IPresenter
     {
-        private readonly AuthManager _authManager;
-
-        public MainMenuPresenter(MainMenuView mainMenuView, GameStateManager gameStateManager, AuthManager authManager,
+        public MainMenuPresenter(MainMenuView view, GameStateManager gameStateManager, AuthManager authManager,
             UIManager uiManager)
         {
-            _authManager = authManager;
-            mainMenuView.OnStartButton += gameStateManager.StartGame;
-            mainMenuView.OnLogoutButton += () => { _authManager.Logout(); uiManager.Show<AuthView>(); };
+            view.OnStartButton += gameStateManager.StartGame;
+            view.OnLogoutButton += () => { authManager.Logout(); uiManager.Show<AuthView>(); };
+            view.OnLeaderboardButton +=  () => { uiManager.Show<LeaderboardView>(false); };
+
+            view.OnShow += () => { view.UpdateDisplayName(authManager.UserDisplayName); };
+            
+            authManager.OnLoginSuccess += () => { view.UpdateDisplayName(authManager.UserDisplayName); };
+            authManager.OnRegisterSuccess += () => { view.UpdateDisplayName(authManager.UserDisplayName); };
+            authManager.OnSilentLoginSuccess += () => { view.UpdateDisplayName(authManager.UserDisplayName); };
         }
     }
 }

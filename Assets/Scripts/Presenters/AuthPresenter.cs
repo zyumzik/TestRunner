@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using FirebaseModule;
 using GameStateManagerModule;
 using UI.Views;
@@ -23,8 +24,8 @@ namespace Presenters
             _authManager.OnRegisterSuccess += OnRegisterSuccess;
             _authManager.OnRegisterFailed += OnRegisterFailed;
             
-            _view.OnLogin += OnLogin;
-            _view.OnRegister += OnRegister;
+            _view.OnLogin += OnViewLogin;
+            _view.OnRegister += OnViewRegister;
             
             _view.SetWaitingPanelActivity(true);
         }
@@ -42,6 +43,7 @@ namespace Presenters
 
         private void OnLoginSuccess()
         {
+            _view.SetWaitingPanelActivity(false);
             _gameStateManager.PrepareGame();
         }
 
@@ -53,6 +55,7 @@ namespace Presenters
 
         private void OnRegisterSuccess()
         {
+            _view.SetWaitingPanelActivity(false);
             _gameStateManager.PrepareGame();
         }
 
@@ -62,16 +65,16 @@ namespace Presenters
             _view.ShowErrorPanel();
         }
         
-        private void OnLogin(string email, string password)
+        private async void OnViewLogin(string email, string password)
         {
             _view.SetWaitingPanelActivity(true);
-            _authManager.Login(email, password);
+            await _authManager.Login(email, password);
         }
 
-        private void OnRegister(string email, string password)
+        private async void OnViewRegister(string username, string email, string password)
         {
             _view.SetWaitingPanelActivity(true);
-            _authManager.Register(email, password);
+            await _authManager.Register(username, email, password);
         }
     }
 }
