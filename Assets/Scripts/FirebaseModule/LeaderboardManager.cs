@@ -11,17 +11,21 @@ namespace FirebaseModule
     {
         private readonly string _leaderboardPathString;
         private readonly AuthManager _authManager;
-        private readonly DatabaseReference _dbReference;
+        private DatabaseReference _dbReference;
 
         public event Action OnLeaderboardLoadingFailed;
-        
+
         public LeaderboardManager(string leaderboardPathString, AuthManager authManager)
         {
             _leaderboardPathString = leaderboardPathString;
             _authManager = authManager;
-            _dbReference = FirebaseDatabase.DefaultInstance.RootReference;
         }
 
+        public void Initialize()
+        {
+            _dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        }
+        
         public Task SubmitScore(int score)
         {
             var userId = _authManager.UserId;
@@ -61,7 +65,6 @@ namespace FirebaseModule
                 });
             }
 
-            // Сортуємо по Score спадаючи
             scoreList.Sort((a, b) => b.Score.CompareTo(a.Score));
 
             for (int i = 0; i < scoreList.Count; i++)
@@ -110,7 +113,6 @@ namespace FirebaseModule
 
                     list.Sort((a, b) => b.Score.CompareTo(a.Score));
 
-                    // Додаємо Rank
                     for (int i = 0; i < list.Count; i++)
                     {
                         list[i].Rank = i + 1;

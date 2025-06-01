@@ -1,6 +1,5 @@
 using FirebaseModule;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace Installers
@@ -13,8 +12,9 @@ namespace Installers
         public override void InstallBindings()
         {
             Container.Bind<FirebaseInitializer>().AsSingle().WithArguments(_databaseUri).NonLazy();
+            
             Container.BindInterfacesAndSelfTo<AuthManager>().AsSingle();
-            Container.Bind<LeaderboardManager>().AsSingle().WithArguments(_leaderboardPathString);
+            Container.BindInterfacesAndSelfTo<LeaderboardManager>().AsSingle().WithArguments(_leaderboardPathString);
         }
     }
 }

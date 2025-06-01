@@ -11,6 +11,8 @@ namespace GameStateManagerModule
     {
         private readonly UIManager _uiManager;
         private readonly AuthManager _authManager;
+        private readonly FirebaseInitializer _firebaseInitializer;
+        private readonly LeaderboardManager _leaderboardManager;
         private readonly Player _player;
 
         public event Action OnGamePrepared;
@@ -20,15 +22,21 @@ namespace GameStateManagerModule
         public event Action OnGameEnd;
         public event Action OnGameRestarted; 
         
-        public GameStateManager(UIManager uiManager, AuthManager authManager)
+        public GameStateManager(UIManager uiManager, AuthManager authManager, FirebaseInitializer firebaseInitializer,
+            LeaderboardManager leaderboardManager)
         {
             _uiManager = uiManager;
             _authManager = authManager;
+            _firebaseInitializer = firebaseInitializer;
+            _leaderboardManager = leaderboardManager;
         }
 
-        public void Initialize()
+        public async void Initialize()
         {
             _uiManager.Show<AuthView>();
+            await _firebaseInitializer.InitializationTask;
+            _authManager.Initialize();
+            _leaderboardManager.Initialize();
             _authManager.SilentLogin();
         }
 

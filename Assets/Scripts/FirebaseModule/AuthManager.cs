@@ -3,11 +3,10 @@ using System.Threading.Tasks;
 using Firebase.Auth;
 using Firebase.Extensions;
 using UnityEngine;
-using Zenject;
 
 namespace FirebaseModule
 {
-    public class AuthManager : IInitializable
+    public class AuthManager
     { 
         public bool IsUserLoggedIn => _auth.CurrentUser != null;
         public string UserId => _auth.CurrentUser?.UserId;
@@ -22,7 +21,7 @@ namespace FirebaseModule
         public event Action OnLoginFailed;
         public event Action OnRegisterSuccess;
         public event Action OnRegisterFailed;
-        
+
         public void Initialize()
         {
             _auth = FirebaseAuth.DefaultInstance;
