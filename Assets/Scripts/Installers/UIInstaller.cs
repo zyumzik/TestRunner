@@ -1,4 +1,3 @@
-using Configurations;
 using UI;
 using UnityEngine;
 using Zenject;
